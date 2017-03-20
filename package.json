@@ -3,7 +3,9 @@
     "version": "0.1.0",
     "scripts": {
         "unit" : "nodemon --watch src --watch tests tests/Unit.js",
-        "JSON" : "nodemon --watch src --watch examples examples/JSON.js"
+        "JSON" : "nodemon --watch src --watch examples examples/JSON.js",
+        "compile" : "node src/Compile.js & node src/output.test.js",
+        "test" : "node src/output.test.js"
     },
     "directories": {
         "src": "src"

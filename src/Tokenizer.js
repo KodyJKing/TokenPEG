@@ -16,7 +16,7 @@ class Tokenizer {
                 let result = tc.regex.exec(source)
                 if (result !== null) {
                     rejects = 0
-                    if(tc.type !== undefined) {
+                    if(tc.type !== undefined && tc.type !== null) {
                         let token = new Token(tc.type, index, result[0])
                         if(tc.callback !== undefined)
                             token.value = tc.callback(token)

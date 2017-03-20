@@ -56,7 +56,6 @@ let jsonParser = new Parser({
 )
 
 let pass = jsonParser.parse(
-    '{1}',
-    //'{ 1"name": "Vizzini", "employees": [ "Fezzik", "Inigo Montoya" ], "race": "Sicilian", "height": 5.16, "occupation": "criminal mastermind"}',
+    '{"name": "Vizzini", "employees": [ "Fezzik", "Inigo Montoya" ], "race": "Sicilian", "height": 5.16, "occupation": "criminal mastermind"}',
      new Reference('json'))
 console.log(jsonParser.result)
