@@ -1,21 +1,31 @@
 class Parser {
-    constructor(source, grammar) {
-        this.source = source
+    constructor(grammar = {}, tokenizer) {
         this.grammar = grammar
+        this.tokenizer = tokenizer
+    }
+
+    parse(source, rule) {
+        this.source = source
+        this.tokens = this.tokenizer.tokenize(source)
+        let root = new Context(0, this)
+        let pass = rule.parse(root)
+        if(!pass)
+            throw new Error("Could not parse!")
+        return root.result
     }
 }
 
 class Context {
-    constructor(parent) {
-        if (parent == null)
-            this.index = 0
-        else
-            this.index = parent.index
-
-        this.result = null
+    constructor(index, parser) {
+        this.index = index
+        this.parser = parser
     }
 
-    accept(child) {
+    clone(parent) {
+        return new Context(this.index, this.parser)
+    }
+
+    setFrom(child) {
         this.index = child.index
         this.result = child.result
     }

@@ -1,5 +1,5 @@
 class Tokenizer {
-    constructor(...tokenClasses) {
+    constructor(tokenClasses) {
         this.tokenClasses = tokenClasses
     }
 
@@ -13,8 +13,12 @@ class Tokenizer {
                 let result = tc.regex.exec(source)
                 if (result !== null) {
                     rejects = 0
-                    if(tc.type != null)
-                        tokens.push(new Token(tc.type, index, result[0]))
+                    if(tc.type !== undefined) {
+                        let token = new Token(tc.type, index, result[0])
+                        if(tc.callback !== undefined)
+                            token.value = tc.callback(token)
+                        tokens.push(token)
+                    }
                     index = tc.regex.lastIndex
                     if (index >= source.length)
                        return tokens
@@ -22,7 +26,7 @@ class Tokenizer {
                 } else {
                     rejects++
                     if(rejects >= this.tokenClasses.length)
-                       return null
+                       throw new Error("Unexpected symbol: " + source[index] + " at: " + index)
                 }
             }
         }
@@ -30,9 +34,10 @@ class Tokenizer {
 }
 
 class TokenClass {
-    constructor(regex, type) {
+    constructor(regex, type, callback) {
         this.regex = regex
         this.type = type
+        this.callback = callback
     }
 }
 
