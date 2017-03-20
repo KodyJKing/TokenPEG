@@ -30,7 +30,7 @@ module.exports.default = new Parser({
     new TokenClass(/}/y, "closeObject"),
     new TokenClass(/\[/y, "openArray"),
     new TokenClass(/]/y, "closeArray"),
-    new TokenClass(/-?(0|[1-9])\d*([.]\d*)?((e|E)([+]|[-])?\d*)?/y, "number", (token) => {return Number(token.text)}),
-    new TokenClass(/true|false|null/y, "namedValue")
+    new TokenClass(/-?(0|[1-9])\d*([.]\d*)?((e|E)([+]|[-])?\d*)?/y, "number", (token) => {return JSON.parse(token.text)}),
+    new TokenClass(/true|false|null/y, "namedValue", (token) => {return JSON.parse(token.text)})
 ]))
 

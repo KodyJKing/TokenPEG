@@ -15,5 +15,5 @@ endOfInput = !.
 @closeObject = /}/
 @openArray = /\[/
 @closeArray = /]/
-@number = /-?(0|[1-9])\d*([.]\d*)?((e|E)([+]|[-])?\d*)?/ {return Number(token.text)}
-@namedValue = /true|false|null/
+@number = /-?(0|[1-9])\d*([.]\d*)?((e|E)([+]|[-])?\d*)?/ {return JSON.parse(token.text)}
+@namedValue = /true|false|null/ {return JSON.parse(token.text)}

@@ -1,0 +1,274 @@
+{
+  "employees": [
+    {
+      "_id": "58cfc80f0c415a83ceb1eefe",
+      "index": 0,
+      "guid": "a0863233-24a5-4e3b-9793-68b88fd87853",
+      "isActive": false,
+      "balance": "$1,441.61",
+      "picture": "http://placehold.it/32x32",
+      "age": 20,
+      "eyeColor": "blue",
+      "name": "Morrow Gibbs",
+      "gender": "male",
+      "company": "FLUMBO",
+      "email": "morrowgibbs@flumbo.com",
+      "phone": "+1 (918) 568-3616",
+      "address": "448 Leonora Court, Yorklyn, Vermont, 5294",
+      "about": "Magna consectetur magna commodo incididunt ea. Ullamco reprehenderit ad veniam sint enim est adipisicing exercitation commodo non consectetur. Duis fugiat do cillum ex labore non sunt et adipisicing id id nisi mollit aliqua. Aute sit officia reprehenderit sint ex qui cillum nostrud duis.\r\n",
+      "registered": "2016-08-16T05:29:50 +07:00",
+      "latitude": -71.02453,
+      "longitude": -68.61803,
+      "tags": [
+        "magna",
+        "labore",
+        "pariatur",
+        "anim",
+        "pariatur",
+        "qui",
+        "adipisicing"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Cara Meyer"
+        },
+        {
+          "id": 1,
+          "name": "Gross Colon"
+        },
+        {
+          "id": 2,
+          "name": "Kitty Short"
+        }
+      ],
+      "greeting": "Hello, Morrow Gibbs! You have 8 unread messages.",
+      "favoriteFruit": "banana"
+    },
+    {
+      "_id": "58cfc80f7d2115ba7c17d7c3",
+      "index": 1,
+      "guid": "30b8a089-6af2-4481-80e2-6259bb300f06",
+      "isActive": false,
+      "balance": "$2,373.05",
+      "picture": "http://placehold.it/32x32",
+      "age": 31,
+      "eyeColor": "brown",
+      "name": "Dotson Mcclure",
+      "gender": "male",
+      "company": "REALYSIS",
+      "email": "dotsonmcclure@realysis.com",
+      "phone": "+1 (969) 559-2161",
+      "address": "865 Union Street, Levant, District Of Columbia, 1891",
+      "about": "Nulla voluptate irure laborum duis irure sit laborum ad aliqua. Proident fugiat reprehenderit sit consectetur minim esse sit labore nostrud. Amet incididunt id ut minim.\r\n",
+      "registered": "2014-09-05T08:09:24 +07:00",
+      "latitude": -38.047238,
+      "longitude": -171.544491,
+      "tags": [
+        "excepteur",
+        "exercitation",
+        "magna",
+        "magna",
+        "excepteur",
+        "Lorem",
+        "adipisicing"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Reed Fleming"
+        },
+        {
+          "id": 1,
+          "name": "Foley Mercer"
+        },
+        {
+          "id": 2,
+          "name": "Monroe Hancock"
+        }
+      ],
+      "greeting": "Hello, Dotson Mcclure! You have 6 unread messages.",
+      "favoriteFruit": "strawberry"
+    },
+    {
+      "_id": "58cfc80ffac0adb91191e6f3",
+      "index": 2,
+      "guid": "c7357138-e657-4aa1-82bb-d8bfc3c80f96",
+      "isActive": false,
+      "balance": "$3,305.33",
+      "picture": "http://placehold.it/32x32",
+      "age": 23,
+      "eyeColor": "blue",
+      "name": "Olive Park",
+      "gender": "female",
+      "company": "INSURETY",
+      "email": "olivepark@insurety.com",
+      "phone": "+1 (882) 561-2910",
+      "address": "554 Stoddard Place, Robbins, Illinois, 9378",
+      "about": "Nulla aute sit do proident tempor sunt quis esse laboris proident. Elit sint anim excepteur nulla esse non laborum et officia velit fugiat adipisicing magna. Adipisicing dolor nulla minim duis Lorem culpa culpa reprehenderit nulla.\r\n",
+      "registered": "2015-06-15T10:01:38 +07:00",
+      "latitude": -81.094411,
+      "longitude": -145.342578,
+      "tags": [
+        "in",
+        "labore",
+        "Lorem",
+        "culpa",
+        "adipisicing",
+        "nostrud",
+        "sit"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Olga Carver"
+        },
+        {
+          "id": 1,
+          "name": "Debra Hayden"
+        },
+        {
+          "id": 2,
+          "name": "Barnett Warner"
+        }
+      ],
+      "greeting": "Hello, Olive Park! You have 3 unread messages.",
+      "favoriteFruit": "apple"
+    },
+    {
+      "_id": "58cfc80f9560402535c9af47",
+      "index": 3,
+      "guid": "519c28cb-aef1-4a13-adad-afed0f5a5881",
+      "isActive": true,
+      "balance": "$2,102.64",
+      "picture": "http://placehold.it/32x32",
+      "age": 21,
+      "eyeColor": "green",
+      "name": "Fox Hudson",
+      "gender": "male",
+      "company": "BULLZONE",
+      "email": "foxhudson@bullzone.com",
+      "phone": "+1 (970) 522-3303",
+      "address": "739 Harrison Avenue, Roosevelt, Pennsylvania, 7338",
+      "about": "Minim consequat irure sunt officia proident velit id aute enim. Commodo tempor esse consequat laboris culpa sint minim ut quis ex. Enim irure ullamco ea elit qui Lorem do veniam ullamco do anim. Tempor voluptate veniam tempor est officia duis. Occaecat cupidatat ex culpa laboris adipisicing amet.\r\n",
+      "registered": "2014-04-12T08:40:07 +07:00",
+      "latitude": -50.1551,
+      "longitude": -45.652647,
+      "tags": [
+        "velit",
+        "sit",
+        "eiusmod",
+        "magna",
+        "veniam",
+        "dolore",
+        "proident"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Browning Santos"
+        },
+        {
+          "id": 1,
+          "name": "Alice Dixon"
+        },
+        {
+          "id": 2,
+          "name": "Leanna Becker"
+        }
+      ],
+      "greeting": "Hello, Fox Hudson! You have 9 unread messages.",
+      "favoriteFruit": "apple"
+    },
+    {
+      "_id": "58cfc80fb39f2b5605774824",
+      "index": 4,
+      "guid": "3832677f-dbd9-4b7e-9690-8c3a6a776ec3",
+      "isActive": true,
+      "balance": "$1,298.10",
+      "picture": "http://placehold.it/32x32",
+      "age": 35,
+      "eyeColor": "brown",
+      "name": "Buchanan Mcclain",
+      "gender": "male",
+      "company": "CHORIZON",
+      "email": "buchananmcclain@chorizon.com",
+      "phone": "+1 (873) 563-3100",
+      "address": "286 Garfield Place, Caberfae, Kansas, 8562",
+      "about": "Nostrud eiusmod veniam culpa labore veniam incididunt cupidatat velit occaecat. Excepteur do consequat duis ex eiusmod in enim reprehenderit officia consectetur. Aliqua ea nisi voluptate excepteur consectetur. Minim magna sit fugiat in exercitation amet excepteur non aliquip labore amet. Proident non pariatur dolore duis quis.\r\n",
+      "registered": "2016-12-16T04:53:37 +08:00",
+      "latitude": 33.377565,
+      "longitude": 2.422345,
+      "tags": [
+        "minim",
+        "id",
+        "velit",
+        "eu",
+        "excepteur",
+        "ullamco",
+        "exercitation"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Gretchen Stein"
+        },
+        {
+          "id": 1,
+          "name": "Maria Lloyd"
+        },
+        {
+          "id": 2,
+          "name": "Ronda Nielsen"
+        }
+      ],
+      "greeting": "Hello, Buchanan Mcclain! You have 3 unread messages.",
+      "favoriteFruit": "apple"
+    },
+    {
+      "_id": "58cfc80fe07a7781f53afcc2",
+      "index": 5,
+      "guid": "68bc058f-63bc-4c77-b9d5-d893743017fe",
+      "isActive": false,
+      "balance": "$3,722.05",
+      "picture": "http://placehold.it/32x32",
+      "age": 35,
+      "eyeColor": "blue",
+      "name": "Bertha Stone",
+      "gender": "female",
+      "company": "APPLICA",
+      "email": "berthastone@applica.com",
+      "phone": "+1 (970) 532-2939",
+      "address": "743 Baycliff Terrace, Fairview, Mississippi, 8766",
+      "about": "Aute cillum proident voluptate cupidatat non ea Lorem elit minim. Ad consequat ad commodo deserunt nulla consectetur incididunt sunt adipisicing minim amet quis dolor. Irure sunt est nisi cillum quis ex.\r\n",
+      "registered": "2016-07-28T02:37:41 +07:00",
+      "latitude": -41.57955,
+      "longitude": -98.778221,
+      "tags": [
+        "mollit",
+        "ipsum",
+        "qui",
+        "non",
+        "enim",
+        "ut",
+        "Lorem"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Rhea Matthews"
+        },
+        {
+          "id": 1,
+          "name": "Marina Allison"
+        },
+        {
+          "id": 2,
+          "name": "Rush Rodgers"
+        }
+      ],
+      "greeting": "Hello, Bertha Stone! You have 7 unread messages.",
+      "favoriteFruit": "apple"
+    }
+  ]
+}

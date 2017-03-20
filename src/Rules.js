@@ -120,7 +120,7 @@ class TokenRule extends Rule {
         if(token.type != this.type)
             return false
         context.index++
-        context.result = token.value || token.text
+        context.result = token.value === undefined ? token.text : token.value
         return true
     }
 
