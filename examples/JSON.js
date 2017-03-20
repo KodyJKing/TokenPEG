@@ -1,8 +1,6 @@
-let assert = require('assert')
-
-let Parser = require('./Parser.js').default
-let Rules = require('./Rules.js')
-let $Tokenizer = require('./Tokenizer.js')
+let Parser = require('../src/Parser.js').default
+let Rules = require('../src/Rules.js')
+let $Tokenizer = require('../src/Tokenizer.js')
 
 for (let name in $Tokenizer)
     eval("var " + name + " = $Tokenizer." + name)
@@ -41,16 +39,17 @@ let jsonParser = new Parser(
                 return obj
             })},
     new Tokenizer([
-        new TokenClass(/\s+|:|,/y),
+        new TokenClass(/\s+|:|,/y), //Whitespace and delimiters.
         new TokenClass(/"([^"\\]|\\(["\\/bfnrtu]|u\d{4}))*"/y, 'string', (token) => JSON.parse(token.text)),
         new TokenClass(/{/y, 'open_object'),
         new TokenClass(/}/y, 'close_object'),
         new TokenClass(/\[/y, 'open_array'),
         new TokenClass(/]/y, 'close_array'),
         new TokenClass(/-?(0|[1-9])\d*([.]\d*)?((e|E)([+]|[-])?\d*)?/y , 'number', (token) => Number(token.text)),
-        new TokenClass(/true|false|null/y, 'value_keyword')]))
+        new TokenClass(/true|false|null/y, 'value_keyword')])
+)
 
 let result = jsonParser.parse(
-    '{ "name": "Vizzini", "employees": [ "Fezzik", "Innigo Montoya" ], "race": "Sicilian", "height": 5.16, "occupation": "criminal mastermind"}',
+    '{ "name": "Vizzini", "employees": [ "Fezzik", "Inigo Montoya" ], "race": "Sicilian", "height": 5.16, "occupation": "criminal mastermind"}',
      new Reference('value'))
 console.log(result)

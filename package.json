@@ -2,7 +2,8 @@
     "name": "TokenPEG",
     "version": "0.1.0",
     "scripts": {
-        "watch" : "nodemon --watch src src/Unit.js"
+        "unit" : "nodemon --watch src --watch tests tests/Unit.js",
+        "JSON" : "nodemon --watch src --watch examples examples/JSON.js"
     },
     "directories": {
         "src": "src"

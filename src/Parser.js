@@ -7,6 +7,7 @@ class Parser {
     parse(source, rule) {
         this.source = source
         this.tokens = this.tokenizer.tokenize(source)
+        console.log(this.tokens)
         let root = new Context(0, this)
         let pass = rule.parse(root)
         if(!pass)
