@@ -4,8 +4,8 @@
     "scripts": {
         "unit" : "nodemon --watch src --watch tests tests/Unit.js",
         "JSON" : "nodemon --watch src --watch examples examples/JSON.js",
-        "compile" : "node src/Compile.js & node src/output.test.js",
-        "test" : "node src/output.test.js"
+        "compile" : "node src/Compile.js & node tests/output.test.js",
+        "test" : "node tests/output.test.js"
     },
     "directories": {
         "src": "src"

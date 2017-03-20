@@ -175,6 +175,11 @@ class Action extends Rule {
     $toString() {
         return 'ACTION(' + this.rule.toString() + ')'
     }
+
+    setDisplay(name) {
+        this.rule.setDisplay(name + 'Body')
+        return this
+    }
 }
 
 class Not extends Rule {

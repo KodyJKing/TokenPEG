@@ -16,12 +16,13 @@ module.exports.default = new Parser({
     main : new Action(new Sequence(new Reference("object"), new Reference("endOfInput")), (result) => {return result[0]}),
     value : new Choice(new TokenRule("string"), new TokenRule("number"), new TokenRule("namedValue"), new Reference("array"), new Reference("object")),
     array : new Action(new Sequence(new TokenRule("openArray"), new Repeat(new Reference("value")), new TokenRule("closeArray")), (result) => {return result[1]}),
-    object : new Action(new Sequence(new TokenRule("openObject"), new Repeat(new Sequence(new TokenRule("string"), new Reference("value"))), new TokenRule("closeObject")), (result) => {result = result[1]
+    object : new Action(new Sequence(new TokenRule("openObject"), new Repeat(new Reference("mapping")), new TokenRule("closeObject")), (result) => {result = result[1]
     obj = {}
     for (let i = 0; i < result.length; i++) {
         obj[result[i][0]] = result[i][1]
     }
     return obj}),
+    mapping : new Sequence(new TokenRule("string"), new Reference("value")),
     endOfInput : new Not(new Any())
 }, new Tokenizer([
     new TokenClass(/\s+|:|,/y, null),

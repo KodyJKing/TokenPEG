@@ -4,7 +4,7 @@ const endColor = '\u001b[0m'
 class Parser {
     constructor(grammar = {}, tokenizer, debug = false) {
         for (let key in grammar) {
-            grammar[key].displayName = key
+            grammar[key].setDisplay(key)
         }
         this.grammar = grammar
         this.tokenizer = tokenizer

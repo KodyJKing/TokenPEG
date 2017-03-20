@@ -1,6 +1,6 @@
-let parser = require('./output.js').default
+let parser = require('../src/output.js').default
 let fs = require('fs')
-let source = fs.readFileSync('src/large.json', { encoding: 'utf8' })
+let source = fs.readFileSync('tests/small.json', { encoding: 'utf8' })
 console.log('\n\n')
 
 console.log('Running TokenPeg test.')

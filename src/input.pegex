@@ -1,13 +1,14 @@
 main = object endOfInput {return result[0]}
 value = @string / @number / @namedValue / array / object
 array = @openArray (value)* @closeArray {return result[1]}
-object = @openObject (@string value)* @closeObject {
+object = @openObject mapping* @closeObject {
     result = result[1]
     obj = {}
     for (let i = 0; i < result.length; i++) {
         obj[result[i][0]] = result[i][1]
     }
     return obj}
+mapping = @string value
 endOfInput = !.
 @ = /\s+|:|,/
 @string = /"([^"\\]|\\(["\\/bfnrtu]|u\d{4}))*"/ {return JSON.parse(token.text)}
