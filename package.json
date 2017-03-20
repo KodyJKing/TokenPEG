@@ -1,0 +1,27 @@
+{
+    "name": "TokenPEG",
+    "version": "0.1.0",
+    "scripts": {
+        "watch" : "nodemon --watch src src/Unit.js"
+    },
+    "directories": {
+        "src": "src"
+    },
+    "engines": {
+        "node": "0.10.x"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "pegjs": "~0.10.0"
+    },
+    "author": {
+        "name": "Kody King",
+        "email": "kody.j.king@gmail.com"
+    },
+    "contributors": [
+        {
+            "name": "Kody King"
+        }
+    ],
+    "license": "MIT"
+}
