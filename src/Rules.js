@@ -1,9 +1,33 @@
-class Sequence {
+class Rule {
+    parse(context) {
+        if (!context.parser.debug)
+            return this.$parse(context)
+        let parser = context.parser
+        parser.pushRule(this)
+        let pass = this.$parse(context)
+        parser.popRule(this)
+        if (!pass)
+            parser.pushError(parser.ruleStack.join(' > ') + ' > ' + this.toString(), context.index)
+        return pass
+    }
+
+    toString() {
+        return this.displayName || (this.$toString ? this.$toString() : this.constructor.name)
+    }
+
+    setDisplay(name) {
+        this.displayName = name
+        return this
+    }
+}
+
+class Sequence extends Rule {
     constructor(...rules) {
+        super()
         this.rules = rules
     }
 
-    parse(context) {
+    $parse(context) {
         let innerContext = context.clone()
         let results = []
 
@@ -18,19 +42,20 @@ class Sequence {
         return true
     }
 
-    toString() {
+    $toString() {
         return '(' + this.rules.map((rule) => rule.toString()).join(' ') + ')'
     }
 }
 
-class Repeat {
-        constructor(rule, min = 0, max = Infinity) {
+class Repeat extends Rule {
+    constructor(rule, min = 0, max = Infinity) {
+        super()
         this.rule = rule
         this.min = min
         this.max = max
     }
 
-    parse(context) {
+    $parse(context) {
         let innerContext = context.clone()
         let matches = 0
         let results = []
@@ -52,17 +77,24 @@ class Repeat {
         return true
     }
 
-    toString() {
-        return '(' + this.rule.toString() + '{' + this.min + ',' + this.max + '})'
+    $toString() {
+        return '(' + this.rule.toString() + this.suffix() + ')'
+    }
+
+    suffix() {
+        return this.min == 0 && this.max == Infinity ?
+         "*" : (this.min == 1 && this.max == Infinity ?
+          "+" : '{' + this.min + ',' + this.max + '}')
     }
 }
 
-class Choice {
+class Choice extends Rule {
     constructor(...rules) {
+        super()
         this.rules = rules
     }
 
-    parse(context) {
+    $parse(context) {
         for (let rule of this.rules) {
             if (rule.parse(context))
                 return true
@@ -70,17 +102,18 @@ class Choice {
         return false
     }
 
-    toString() {
+    $toString() {
         return '(' + this.rules.map((rule) => rule.toString()).join(' / ') + ')'
     }
 }
 
-class TokenRule {
+class TokenRule extends Rule {
     constructor(type) {
+        super()
         this.type = type
     }
 
-    parse(context) {
+    $parse(context) {
         if(context.index >= context.parser.tokens.length)
             return false
         let token = context.parser.tokens[context.index]
@@ -91,13 +124,13 @@ class TokenRule {
         return true
     }
 
-    toString() {
+    $toString() {
         return this.type
     }
 }
 
-class Any {
-    parse(context) {
+class Any extends Rule {
+    $parse(context) {
         if(context.index >= context.parser.tokens.length)
             return false
         context.index++
@@ -105,40 +138,60 @@ class Any {
         return true
     }
 
-    toString() {
+    $toString() {
         return 'ANY'
     }
 }
 
-class Reference {
+class Reference extends Rule {
     constructor(ruleName) {
+        super()
         this.ruleName = ruleName
     }
 
-    parse(context) {
+    $parse(context) {
         return context.parser.grammar[this.ruleName].parse(context)
     }
 
-    toString() {
+    $toString() {
         return this.ruleName
     }
 }
 
-class Action {
+class Action extends Rule {
     constructor(rule, func) {
+        super()
         this.rule = rule
         this.func = func
     }
 
-    parse(context) {
+    $parse(context) {
         let pass = this.rule.parse(context)
         if (pass)
             context.result = this.func(context.result)
         return pass
     }
 
-    toString() {
+    $toString() {
         return 'ACTION(' + this.rule.toString() + ')'
+    }
+}
+
+class Not extends Rule {
+    constructor(rule) {
+        super()
+        this.rule = rule
+    }
+
+    $parse(context) {
+        let pass = this.rule.parse(context)
+        if (pass)
+            context.unexpected = context.unexpected
+        return !pass
+    }
+
+    $toString() {
+        return '(!' + this.rule.toString() + ')'
     }
 }
 
@@ -149,5 +202,6 @@ module.exports = {
     TokenRule: TokenRule,
     Any: Any,
     Reference: Reference,
-    Action: Action
+    Action: Action,
+    Not: Not
 }

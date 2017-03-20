@@ -16,19 +16,15 @@ const green = '\u001b[32m'
 const endColor = '\u001b[0m'
 
 function testRule(parser, rule, source, pass = true) {
-    try {
-        let result = parser.parse(source, rule)
-        if (!pass) {
-            console.log(red, rule.toString(), endColor)
-            console.log(red, "Should have failed but passed!", endColor)
-            console.log(red, JSON.stringify(result), endColor)
-        }
-    } catch(e) {
-        if (pass) {
-            console.log(red, rule.toString(), endColor)
-            throw new Error("Should have passed but failed!")
-        }
-    }
+    let passed = parser.parse(source, rule)
+    if (pass != passed)
+        fail(rule, pass, parser.result)
+}
+
+function fail(rule, pass, result) {
+    console.log(red, rule.toString(), endColor)
+    console.log(red, "Should have " + (pass ? "passed" : "failed") + " but didn't!", endColor)
+    console.log(red, JSON.stringify(result), endColor)
 }
 
 parser = new Parser({}, new Tokenizer([

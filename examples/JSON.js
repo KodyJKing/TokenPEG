@@ -8,8 +8,13 @@ for (let name in $Tokenizer)
 for (let name in Rules)
     eval("var " + name + " = Rules." + name)
 
-let jsonParser = new Parser(
-    {value: new Choice(
+let jsonParser = new Parser({
+    main: new Action(
+        new Sequence(
+            new Reference('object'),
+            new Reference('endOfInput')),
+            (result) => result[0]),
+    value: new Choice(
         new TokenRule('string'), 
         new TokenRule('number'),
         new TokenRule('value_keyword'),
@@ -17,19 +22,19 @@ let jsonParser = new Parser(
         new Reference('object')),
     array: new Action(
         new Sequence(
-            new TokenRule('open_array'),
+            new TokenRule('['),
             new Repeat(new Reference('value')),
-            new TokenRule('close_array')),
+            new TokenRule(']')),
         (result) => result[1]),
     object: new Action(
         new Sequence(
-            new TokenRule('open_object'),
+            new TokenRule('{'),
             new Repeat( 
                 new Sequence(
                     new TokenRule('string'),
-                    new Reference('value'))
+                    new Reference('value')).setDisplay('mapping')
             ),
-            new TokenRule('close_object')),
+            new TokenRule('}')),
             function(result) {
                 result = result[1]
                 obj = {}
@@ -37,19 +42,21 @@ let jsonParser = new Parser(
                     obj[result[i][0]] = result[i][1]
                 }
                 return obj
-            })},
+            }),
+    endOfInput: new Not(new Any())},
     new Tokenizer([
         new TokenClass(/\s+|:|,/y), //Whitespace and delimiters.
         new TokenClass(/"([^"\\]|\\(["\\/bfnrtu]|u\d{4}))*"/y, 'string', (token) => JSON.parse(token.text)),
-        new TokenClass(/{/y, 'open_object'),
-        new TokenClass(/}/y, 'close_object'),
-        new TokenClass(/\[/y, 'open_array'),
-        new TokenClass(/]/y, 'close_array'),
+        new TokenClass(/{/y, '{'),
+        new TokenClass(/}/y, '}'),
+        new TokenClass(/\[/y, '['),
+        new TokenClass(/]/y, ']'),
         new TokenClass(/-?(0|[1-9])\d*([.]\d*)?((e|E)([+]|[-])?\d*)?/y , 'number', (token) => Number(token.text)),
         new TokenClass(/true|false|null/y, 'value_keyword')])
 )
 
-let result = jsonParser.parse(
-    '{ "name": "Vizzini", "employees": [ "Fezzik", "Inigo Montoya" ], "race": "Sicilian", "height": 5.16, "occupation": "criminal mastermind"}',
-     new Reference('value'))
-console.log(result)
+let pass = jsonParser.parse(
+    '{1}',
+    //'{ 1"name": "Vizzini", "employees": [ "Fezzik", "Inigo Montoya" ], "race": "Sicilian", "height": 5.16, "occupation": "criminal mastermind"}',
+     new Reference('json'))
+console.log(jsonParser.result)

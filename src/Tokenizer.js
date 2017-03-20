@@ -1,3 +1,6 @@
+const red   = '\u001b[31m'
+const endColor = '\u001b[0m'
+
 class Tokenizer {
     constructor(tokenClasses) {
         this.tokenClasses = tokenClasses
@@ -25,8 +28,10 @@ class Tokenizer {
                     break
                 } else {
                     rejects++
-                    if(rejects >= this.tokenClasses.length)
-                       throw new Error("Unexpected symbol: " + source[index] + " at: " + index)
+                    if(rejects >= this.tokenClasses.length) {
+                        console.log(red, '\n\nUnexpected symbol ' + source[index] + ' at ' + index + '\n\n', endColor)
+                        return null
+                    }
                 }
             }
         }
