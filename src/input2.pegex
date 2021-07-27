@@ -10,7 +10,6 @@ object = @openObject mapping* @closeObject {
     return obj}
 mapping = @string value
 endOfInput = !.
-@dent = /\n */
 @ = /\s+|:|,/
 @string = /"([^"\\]|\\(["\\/bfnrtu]|u\d{4}))*"/ {return JSON.parse(token.text)}
 @openObject = /{/

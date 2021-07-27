@@ -64,18 +64,20 @@ class Parser {
 }
 
 class Context {
-    constructor(index, parser) {
+    constructor(index, parser, state = {}) {
         this.index = index
         this.parser = parser
+        this.state = state
     }
 
     clone(parent) {
-        return new Context(this.index, this.parser)
+        return new Context(this.index, this.parser, JSON.parse(JSON.stringify(this.state)))
     }
 
     setFrom(child) {
         this.index = child.index
         this.result = child.result
+        this.state = child.state
     }
 }
 

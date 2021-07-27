@@ -9,14 +9,15 @@ var Any = Rules.Any
 var Reference = Rules.Reference
 var Action = Rules.Action
 var Not = Rules.Not
+var Predicate = Rules.Predicate
 var Tokenizer = $Tokenizer.Tokenizer
 var TokenClass = $Tokenizer.TokenClass
 var Token = $Tokenizer.Token
 module.exports.default = new Parser({
-    main : new Action(new Sequence(new Reference("object"), new Reference("endOfInput")), (result) => {return result[0]}),
+    main : new Action(new Sequence(new Reference("object"), new Reference("endOfInput")), (result, state) => {return result[0]}),
     value : new Choice(new TokenRule("string"), new TokenRule("number"), new TokenRule("namedValue"), new Reference("array"), new Reference("object")),
-    array : new Action(new Sequence(new TokenRule("openArray"), new Repeat(new Reference("value")), new TokenRule("closeArray")), (result) => {return result[1]}),
-    object : new Action(new Sequence(new TokenRule("openObject"), new Repeat(new Reference("mapping")), new TokenRule("closeObject")), (result) => {result = result[1]
+    array : new Action(new Sequence(new TokenRule("openArray"), new Repeat(new Reference("value")), new TokenRule("closeArray")), (result, state) => {return result[1]}),
+    object : new Action(new Sequence(new TokenRule("openObject"), new Repeat(new Reference("mapping")), new TokenRule("closeObject")), (result, state) => {result = result[1]
     obj = {}
     for (let i = 0; i < result.length; i++) {
         obj[result[i][0]] = result[i][1]
@@ -25,6 +26,7 @@ module.exports.default = new Parser({
     mapping : new Sequence(new TokenRule("string"), new Reference("value")),
     endOfInput : new Not(new Any())
 }, new Tokenizer([
+    new TokenClass(/\n */y, "dent"),
     new TokenClass(/\s+|:|,/y, null),
     new TokenClass(/"([^"\\]|\\(["\\/bfnrtu]|u\d{4}))*"/y, "string", (token) => {return JSON.parse(token.text)}),
     new TokenClass(/{/y, "openObject"),

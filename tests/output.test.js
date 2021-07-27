@@ -8,12 +8,12 @@ let time = new Date().getTime()
 parser.parse(source)
 let tp = parser.result
 time = new Date().getTime() - time
-console.log('Done in ' + time / 1000 + 's.\n' )
+console.log('Done in ' + time + 'ms.\n' )
 
 console.log('Running JSON.parse test.')
 time = new Date().getTime()
 let jp = JSON.parse(source)
 time = new Date().getTime() - time
-console.log('Done in ' + time / 1000 + 's.\n' )
+console.log('Done in ' + time + 'ms.\n' )
 
 console.log((JSON.stringify(tp) === JSON.stringify(tp) ? 'passed' : 'failed') + '\n')

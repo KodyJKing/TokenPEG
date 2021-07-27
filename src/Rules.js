@@ -31,6 +31,7 @@ class Sequence extends Rule {
         let innerContext = context.clone()
         let results = []
 
+        context.values = results
         for (let rule of this.rules) {
             if (!rule.parse(innerContext))
                 return false
@@ -168,7 +169,7 @@ class Action extends Rule {
     $parse(context) {
         let pass = this.rule.parse(context)
         if (pass)
-            context.result = this.func(context.result)
+            context.result = this.func(context.result, context.state)
         return pass
     }
 
@@ -200,6 +201,23 @@ class Not extends Rule {
     }
 }
 
+class Predicate extends Rule {
+    constructor(func) {
+        super()
+        this.func = func
+    }
+
+    $parse(context) {
+        let pass = this.func(context.values, context.state)
+        if (pass) context.result = null
+        return pass
+    }
+
+    $toString() {
+        return 'PREDICATE'
+    }
+}
+
 module.exports = {
     Sequence: Sequence,
     Repeat: Repeat,
@@ -208,5 +226,6 @@ module.exports = {
     Any: Any,
     Reference: Reference,
     Action: Action,
-    Not: Not
+    Not: Not,
+    Predicate: Predicate
 }
